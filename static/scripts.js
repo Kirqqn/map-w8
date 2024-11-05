@@ -10,13 +10,22 @@ function performAction(url) {
     fetch(url)
         .then(response => response.text())
         .then(data => {
-            if (data === "moveMapToLviv()") {
+            if (data === "moveMapToKharkiv()") {
+                moveMapToKharkiv();
+            } else if (data === "moveMapToLviv()") {
                 moveMapToLviv();
             } else {
                 alert(data);
             }
         })
         .catch(error => console.error('Помилка:', error));
+}
+
+function moveMapToKharkiv() {
+    map.flyTo({
+        center: [36.2527, 49.9935], // Координати Харкова
+        zoom: 12 // Новий рівень масштабу
+    });
 }
 
 function moveMapToLviv() {
